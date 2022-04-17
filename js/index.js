@@ -19,11 +19,11 @@ class indexPage{
                 alert('1명 이상은 지정해 주셔야 해요.');
                 return;
             }
-            document.querySelector('#people-num').innerHTML = --this.#peopleNum ;
+            document.querySelector('#people-num').innerHTML = --this.#peopleNum;
         };
 
         document.querySelector('#plus-btn').onclick = () => {
-            document.querySelector('#people-num').innerHTML = ++this.#peopleNum ;
+            document.querySelector('#people-num').innerHTML = ++this.#peopleNum;
         };
     }
 
@@ -51,22 +51,21 @@ class indexPage{
         const writeSubmit = document.querySelector("#write-submit");
         writeSubmit.onclick = async () => {
             try {
-                await this.checkEmpty(document.querySelector("#human-area"));
-                await this.checkEmpty(document.querySelector("#penalty-area"));
-                this.#human = this.#setValue(document.querySelector("#human-area"));
-                this.#penalty = this.#setValue(document.querySelector("#penalty-area"));
+                const _humanArea = document.querySelector("#human-area");
+                const _penaltyArea = document.querySelector("#penalty-area");
+                await this.checkEmpty(_humanArea);
+                await this.checkEmpty(_penaltyArea);
+                this.#human = this.#setValue(_humanArea);
+                this.#penalty = this.#setValue(_penaltyArea);
             } catch(e) {
-                console.log(e)
                 alert('빈칸을 모두 입력해주세요!');
                 return;
             }
-
             this.#drawLadder();
         };    
     }
 
     #drawLadder() {
-        
         const mainPage = document.querySelector("#main-page");
         mainPage.innerHTML = `
             <table id="main-table">
@@ -75,8 +74,6 @@ class indexPage{
                 <tfoot><tr></tr></tfoot>
             </table>
         `;
-
-        // const mainTable = document.querySelector("#main-table");
         const humanArea = document.querySelector("#main-table thead tr");
         const penaltyArea = document.querySelector("#main-table tfoot tr");
 
